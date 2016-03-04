@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en-GB'>
+<head>
+    <title>Progress Bars Demo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <div id='container'></div>
+
+    <script id='template' type='text/ractive'>
+        <h1 style='margin: 10px; margin-bottom:0px;'>Progress Bars Demo</h1>
+
+        {{#each progressBars:i}}
+            <div class='barBorder'>
+                <div class='bar' style='width:{{barWidth(progressBars[i].width)}}%; background-color:{{barColor(progressBars[i].value)}};'></div>
+                <div class='barText'>{{progressBars[i].value}}%</div>
+            </div>
+        {{/each}}
+
+        <div class='controlPanel'>
+            <select value='{{selectedItem}}'>
+                {{#each progressBars:i}}
+                    <option value='{{i}}'>{{this.name}}</option>
+                {{/each}}
+            </select>
+            {{#each controlButtons:i}}
+                <button on-click='updateProgressBar'>{{this.name}}</button>
+            {{/each}}
+        </div>
+    </script>
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script src='js/main.js'></script>
+</body>
+</html>
